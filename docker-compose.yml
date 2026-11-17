@@ -1,0 +1,17 @@
+# 业务库（生产默认 profile 使用）。RDS 实时报表库是另一个连山云 MySQL 实例，
+# 不在本 compose 内：按 docs/runbook.md 在连山控制台创建（务必北京机房）。
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: uni_delivery
+      MYSQL_USER: uni_delivery
+      MYSQL_PASSWORD: uni_delivery_dev
+      MYSQL_ROOT_PASSWORD: root_dev
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+volumes:
+  mysql-data:
